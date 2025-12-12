@@ -25,10 +25,5 @@
     "CACHE_DRIVER": "array",
     "LOG_CHANNEL": "stderr",
     "SESSION_DRIVER": "cookie"
-  },
-  "functions": {
-    "public/index.php": {
-      "runtime": "vercel-php@0.7.1"
-    }
   }
 }
