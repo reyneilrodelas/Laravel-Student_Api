@@ -47,42 +47,31 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'course_name' => 'required|string|',
-            'course_code' => 'required|string|',
+            'course_name' => 'required|string',
+            'course_code' => 'required|string',
             'description' => 'nullable|string',
             'credits' => 'required|integer',
         ]);
 
-        if($validatedData){
-            $course = Course::create([
-                'course_name' => $validatedData['course_name'],
-                'course_code' => $validatedData['course_code'],
-                'description' => $validatedData['description'],
-                'credits' => $validatedData['credits'],
-            ]);
+        $course = Course::create([
+            'course_name' => $validatedData['course_name'],
+            'course_code' => $validatedData['course_code'],
+            'description' => $validatedData['description'] ?? null,
+            'credits' => $validatedData['credits'],
+        ]);
 
-        if(!$course){
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Course not created',
-                'data' => $course
-
-            ], 500);
-        }
         return response()->json([
             'status' => 'success',
             'message' => 'Course created successfully',
             'data' => $course
         ], 201);
-
-        }
     }
 
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'course_name' => 'required|string|',
-            'course_code' => 'required|string|',
+            'course_name' => 'required|string',
+            'course_code' => 'required|string',
             'description' => 'nullable|string',
             'credits' => 'required|integer',
         ]);
@@ -95,20 +84,18 @@ class CourseController extends Controller
             ], 404);
         }
 
-        $updatedCourse = $course->update([
+        $course->update([
             'course_name' => $validatedData['course_name'],
             'course_code' => $validatedData['course_code'],
-            'description' => $validatedData['description'],
+            'description' => $validatedData['description'] ?? null,
             'credits' => $validatedData['credits'],
         ]);
-        if($updatedCourse){
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Course updated successfully',
-                'data' => $updatedCourse
 
-            ], 200);
-        }
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Course updated successfully',
+            'data' => $course->fresh()
+        ], 200);
     }
 
 
