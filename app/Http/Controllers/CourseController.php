@@ -7,23 +7,15 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    //
     public function index()
     {
        $course = Course::all();
 
         if($course->isEmpty())   {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'No courses found'
-            ], 404);
+            return response()->json(['message' => 'No courses found'], 404);
         }
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Courses retrieved successfully',
-            'data' => $course
-        ], 200);
+        return response()->json($course);
     }
 
     public function show($id)
@@ -31,17 +23,10 @@ class CourseController extends Controller
         $course = Course::where('id', $id)->first();
 
         if(!$course)   {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Course not found'
-            ], 404);
+            return response()->json(['error' => 'Course not found'], 404);
         }
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Course retrieved successfully',
-            'data' => $course
-        ], 200);
+        return response()->json($course);
     }
 
     public function store(Request $request)
@@ -60,11 +45,7 @@ class CourseController extends Controller
             'credits' => $validatedData['credits'],
         ]);
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Course created successfully',
-            'data' => $course
-        ], 201);
+        return response()->json($course, 201);
     }
 
     public function update(Request $request, $id)
@@ -78,10 +59,7 @@ class CourseController extends Controller
 
         $course = Course::where('id', $id)->first();
         if(!$course)   {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Course not found'
-            ], 404);
+            return response()->json(['error' => 'Not found'], 404);
         }
 
         $course->update([
@@ -91,28 +69,17 @@ class CourseController extends Controller
             'credits' => $validatedData['credits'],
         ]);
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Course updated successfully',
-            'data' => $course->fresh()
-        ], 200);
+        return response()->json($course->fresh());
     }
-
 
     public function destroy($id)
     {
-         $course = Course::where('id', $id)->first();
+        $course = Course::where('id', $id)->first();
         if(!$course)   {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Course not found'
-            ], 404);
+            return response()->json(['error' => 'Not found'], 404);
         }
 
         $course->delete();
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Course deleted successfully'
-        ], 200);
+        return response()->json(['message' => 'Deleted'], 200);
     }
 }
