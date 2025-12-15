@@ -59,3 +59,43 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+
+
+## Group Composition & Contributions
+
+This project was developed by a team of four (4) members. Each member was assigned a specific role to ensure organized development, effective collaboration, and quality output.
+
+---
+
+## Project Manager - Jill De La Cruz
+- Oversees the project timeline and ensures milestones are met.
+- Coordinates tasks and communication among team members.
+- Consolidates project documents and reports.
+- Leads the group during meetings and presentations.
+
+---
+
+## Programmer - Reyneil Rodelas
+- Develops the system’s core features and functionalities.
+- Implements application logic based on system requirements.
+- Works closely with the System Analyst to translate requirements into code.
+- Assists in debugging and improving system performance.
+
+---
+
+## System Analyst - Lee Aaron Quipa
+- Leads requirements gathering and defines project scope.
+- Analyzes user needs and system processes.
+- Creates system requirements, user stories, and use case diagrams.
+- Ensures alignment between user needs and system design.
+
+---
+
+## QA Tester - Mara Gustelo
+- Prepares and executes test cases for system workflows.
+- Conducts testing to identify bugs and issues.
+- Documents test results and reports findings to the team.
+- Verifies fixes and ensures system quality before submission.
